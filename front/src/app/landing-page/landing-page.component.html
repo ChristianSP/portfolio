@@ -1,0 +1,9 @@
+<div #textsWrapper class="texts__wrapper">
+  <span *ngFor="let textObject of backgroundTexts"
+        [style.left.px]="textObject.x"
+        [style.top.px]="textObject.y"
+        (mouseover)="onTextHover($event,textObject)"
+        [ngClass]="{'text-std': isStd(textObject),'text-med': isMed(textObject),'text-hard': isHard(textObject)}">
+    {{ textObject.text }}
+  </span>
+</div>

@@ -1,0 +1,23 @@
+$color-std: #00FF2B;
+$color-med: #FF7A00;
+$color-hard: #FF1300;
+
+.texts__wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+
+    span{
+        position: absolute;
+
+        &.text-std{
+            color: $color-std;
+        }
+        &.text-med{
+            color: $color-med;
+        }
+        &.text-hard{
+            color: $color-hard;
+        }
+    }
+}
