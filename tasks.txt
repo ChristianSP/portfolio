@@ -1,0 +1,3 @@
+Hacer responsive en movil vertical añadir palabra proyectos como iconos descargar cv e idiomas ,, horizontal mitad logo(o iconos) mitad proyectos con scroll vertical de proyectos
+Servidor con para gestionar texto fondo
+modulo para añadir proyectos

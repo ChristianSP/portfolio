@@ -70,31 +70,45 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
 
   tick(){
     let textsWrapperElement = this.textsWrapperRef.nativeElement;
+    let limiteExtra = 100;
+    let velocidadMin = 3;
     this.backgroundTexts.forEach( (textoObject,index) =>{
       textoObject.x += textoObject.vx;
       textoObject.y += textoObject.vy;
-      if(textoObject.x < -100){
-        textoObject.x = textsWrapperElement.clientWidth + 100;
+      
+      
+      let superaLimite = false;
+      if(textoObject.x < -limiteExtra){
+        textoObject.x = textsWrapperElement.clientWidth + limiteExtra;
+        superaLimite = true;
       }
-      if(textoObject.x > textsWrapperElement.clientWidth + 100){
-        textoObject.x = -100;
+      if(textoObject.x > textsWrapperElement.clientWidth + limiteExtra){
+        textoObject.x = -limiteExtra;
+        superaLimite = true;
       }
-      if(textoObject.y < -50){
-        textoObject.y = textsWrapperElement.clientHeight + 50;
+      if(textoObject.y < -limiteExtra){
+        textoObject.y = textsWrapperElement.clientHeight + limiteExtra;
+        superaLimite = true;
       }
-      if(textoObject.y > textsWrapperElement.clientHeight + 50){
-        textoObject.y = -50;
+      if(textoObject.y > textsWrapperElement.clientHeight + limiteExtra){
+        textoObject.y = -limiteExtra;
+        superaLimite = true;
       }
-      if(textoObject.vx > 3){
+      //Cuando supere limites cambiar texto
+      if(superaLimite){
+        textoObject.text = this.getRandomText();
+      }
+
+      if(textoObject.vx > velocidadMin){
         textoObject.vx--;
       }
-      if(textoObject.vy > 3){
+      if(textoObject.vy > velocidadMin){
         textoObject.vy--;
       }
-      if(textoObject.vx < -3){
+      if(textoObject.vx < -velocidadMin){
         textoObject.vx++;
       }
-      if(textoObject.vy < -3){
+      if(textoObject.vy < -velocidadMin){
         textoObject.vy++;
       }
     });
@@ -155,5 +169,11 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
 
       this.bgTextInput.reset("");
     }
+  }
+
+  getRandomText(){
+    let randomIndex = this.getRandomInt(0,textosBackground.length);
+    let randomText = textosBackground[randomIndex];
+    return randomText;
   }
 }

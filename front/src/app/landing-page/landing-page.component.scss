@@ -3,7 +3,7 @@ $color-med: #FF7A00;
 $color-hard: #FF1300;
 
 @keyframes blink-bg {
-    from {background-color: #00FF2B;}
+    from {background-color: $color-std;}
     to {background-color: #36BA01; color:white;}
 }
 
@@ -30,7 +30,6 @@ $color-hard: #FF1300;
 .bottom__left{
     position: fixed;
     width: 27em;
-    background-color: black;
     color:white;
     bottom: 0;
     left: 0;
@@ -42,4 +41,15 @@ $color-hard: #FF1300;
     animation-name: blink-bg;
     animation-duration: 1s;
     animation-iteration-count: infinite;
+}
+
+img{
+    width: 589px;
+    height: 389px;
+    z-index: 3000;
+    
+    display: block;
+    position: absolute;
+    top: 0;left: 0;bottom: 0; right: 0;
+    margin: auto;
 }
