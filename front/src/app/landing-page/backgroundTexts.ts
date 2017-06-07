@@ -5,7 +5,9 @@ export const textosBackground = [
       "ERROR: Core dumped",
       "Null pointer exception",
       "umami = '100%'",
-      "if(yatusabe) go('dance')",
+      "if(yatusabe) applyChanges()",
       "while(!this.tired) keepTrying()",
-      "System.out.println('betis')"
+      "System.out.println('betis')",
+      "Click me!",
+      "Can`t touch this",
 ]

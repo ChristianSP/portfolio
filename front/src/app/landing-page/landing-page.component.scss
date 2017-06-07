@@ -2,6 +2,21 @@ $color-std: #00FF2B;
 $color-med: #FF7A00;
 $color-hard: #FF1300;
 
+@keyframes blink-bg {
+    from {background-color: #00FF2B;}
+    to {background-color: #36BA01; color:white;}
+}
+
+.text-std{
+    color: $color-std;
+}
+.text-med{
+    color: $color-med;
+}
+.text-hard{
+    color: $color-hard;
+}
+
 .texts__wrapper{
     width: 100vw;
     height: 100vh;
@@ -9,15 +24,22 @@ $color-hard: #FF1300;
 
     span{
         position: absolute;
-
-        &.text-std{
-            color: $color-std;
-        }
-        &.text-med{
-            color: $color-med;
-        }
-        &.text-hard{
-            color: $color-hard;
-        }
     }
+}
+
+.bottom__left{
+    position: fixed;
+    width: 27em;
+    background-color: black;
+    color:white;
+    bottom: 0;
+    left: 0;
+}
+
+.blink-std{
+    background-color: $color-std;
+    border-color: $color-std;
+    animation-name: blink-bg;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
 }

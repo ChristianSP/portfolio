@@ -7,3 +7,30 @@
     {{ textObject.text }}
   </span>
 </div>
+
+<div class="bottom__left">
+    <form class="form-group m-1">
+        <label class="w-100" for="bgTextInput">
+            <span *ngIf="bgTextInput.hasError('required') && !bgTextInput.touched"> 
+                {{ 'add.text.bg' | translate }}
+            </span>
+            <span class="text-med" *ngIf="bgTextInput.touched && bgTextInput.hasError('required')">
+                {{ 'add.text.bg.required' | translate }}
+            </span>
+            <span class="text-hard" *ngIf="!bgTextInput.hasError('required') && bgTextInput.hasError('minlength')">
+                {{ 'add.text.bg.minlength' | translate }}
+            </span>
+            <span *ngIf="bgTextInput.valid">
+                {{ 'add.text.bg.valid' | translate }}
+            </span>
+            <span class="text-hard" *ngIf="!bgTextInput.hasError('required') && bgTextInput.hasError('maxlength')">
+                {{ 'add.text.bg.maxlength' | translate }}
+            </span>
+            <button [ngClass]="{'blink-std': bgTextInput.valid}" [disabled]="!bgTextInput.valid" 
+                    (click)="addText()" class="btn pull-right">
+                <i class="fa fa-plus"></i>
+            </button>
+        </label>
+        <input [formControl]="bgTextInput" type="text" class="form-control" id="bgTextInput"/>
+    </form>
+</div>
