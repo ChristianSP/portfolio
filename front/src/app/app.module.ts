@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { IdiomasComponent } from './idiomas/idiomas.component';
 
+import { TextService } from './_services/text.service';
+import { UrlService } from './_services/url.service';
 
 import { TranslationClass} from './translate/translation';
 import { TranslatePipe} from './translate/translation.pipe';
@@ -33,6 +35,9 @@ import { routing } from './app.route';
     {provide: APP_BASE_HREF, useValue: "/"},
     {provide: TranslationClass.TRANSLATIONS, useValue: TranslationClass.dictionary},
     TranslateService,
+    TextService,
+    UrlService
+
   ],
   bootstrap: [AppComponent]
 })

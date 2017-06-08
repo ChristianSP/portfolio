@@ -1,4 +1,4 @@
-export const textosBackground = [
+export const mockTexts = [
       "E=mc^2",
       "socket.emit(newState)",
       "res.render('epicView.jade')",
