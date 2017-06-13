@@ -1,7 +1,7 @@
 // server.js
 
-var frontUrl = "http://angularwords.esy.es";
-//var frontUrl = "http://localhost:4200";
+//var frontUrl = "http://angularwords.esy.es";
+var frontUrl = "http://localhost:4200";
 
 var Text = require('./app/models/texts');
 
@@ -67,12 +67,14 @@ router.post('/text', function(req, res) {
           Text.find({}, function(err, texts) {
             var textsMap = [];
             var ezCount = 0;
+            var totalCount = 0;
             texts.forEach( (text) => {
               text._id=ezCount;
               textsMap.push(text);
               ezCount++;
+              totalCount += text.count;
             });
-            res.json({texts: textsMap});
+            res.json({texts: textsMap,totalCount: totalCount});
           });
         });
 		} else if (text) {
@@ -81,12 +83,14 @@ router.post('/text', function(req, res) {
           Text.find({}, function(err, texts) {
             var textsMap = [];
             var ezCount = 0;
+            var totalCount = 0;
             texts.forEach( (text) => {
               text._id=ezCount;
               textsMap.push(text);
               ezCount++;
+              totalCount += text.count;
             });
-            res.json({texts: textsMap});
+            res.json({texts: textsMap,totalCount: totalCount});
           });
         });
     }
@@ -98,12 +102,14 @@ router.get('/texts', function(req, res) {
   Text.find({}, function(err, texts) {
     var textsMap = [];
     var ezCount = 0;
+    var totalCount = 0;
     texts.forEach( (text) => {
       text._id=ezCount;
       textsMap.push(text);
       ezCount++;
+      totalCount += text.count;
     });
-    res.json({texts: textsMap});
+    res.json({texts: textsMap,totalCount: totalCount});
 	});
 });
 

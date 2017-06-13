@@ -16,13 +16,15 @@ import { TranslatePipe} from './translate/translation.pipe';
 import { TranslateService} from './translate/translation.service';
 
 import { routing } from './app.route';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     IdiomasComponent,
-    TranslatePipe
+    TranslatePipe,
+    RankingComponent
   ],
   imports: [
     BrowserModule,

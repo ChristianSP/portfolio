@@ -35,6 +35,13 @@ $color-hard: #FF1300;
     left: 0;
 }
 
+.top__right{
+    position: fixed;
+    width: 17em;
+    top: 0;
+    right: 0;
+}
+
 .blink-std{
     background-color: $color-std;
     border-color: $color-std;

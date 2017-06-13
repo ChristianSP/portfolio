@@ -1,0 +1,38 @@
+
+
+  <div class="card mb-3">
+    <div class="card-block">
+      <blockquote class="card-blockquote">
+        <h4>{{ "ranking.title" | translate}}</h4>
+      </blockquote>
+    </div>
+  </div>
+  <div *ngFor="let text of rankingTexts" class="card mb-3">
+    <div class="card-block">
+      <blockquote class="card-blockquote">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="card-title">
+              <span>{{ text.value }}</span>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="odd__circle">
+              <span class="badge badge-success">{{ (text.odds * 100).toFixed(1) + "%" }}</span>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-subtitle">
+              <span><small>{{ text.count + " " + ("ocurrencias" | translate) }}</small></span>
+            </div>
+          </div>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+
+
+            

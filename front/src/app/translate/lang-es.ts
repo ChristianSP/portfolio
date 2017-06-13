@@ -16,4 +16,8 @@ export const LANG_ES_TRANS = {
     "add.text.bg.valid": "Listo para añadir",
     "add.text.bg.minlength": "Puedes hacerlo mejor, al menos 2 cáracteres",
     "add.text.bg.maxlength": "Demasiado para mi, el máximo son 20 cáracteres",
+
+    "ranking.title": "Textos - TOP 5",
+
+    "ocurrencias": "ocurrencias"
 };

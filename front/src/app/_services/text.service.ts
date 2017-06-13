@@ -17,7 +17,11 @@ export class TextService {
         // get users from api
         return this.http.get(this.urlService.texts())
             .map((response: Response) => {
-                return response.json().texts;
+                let data = response.json();
+                for(let text of data.texts){
+                    text.odds = text.count / data.totalCount;
+                }
+                return data;
             });
     }
 
@@ -25,7 +29,11 @@ export class TextService {
         // get users from api
         return this.http.post(this.urlService.text(),{text:text})
             .map((response: Response) => {
-                return response.json().texts;
+                let data = response.json();
+                for(let text of data.texts){
+                    text.odds = text.count / data.totalCount;
+                }
+                return data;
             });
     }
 

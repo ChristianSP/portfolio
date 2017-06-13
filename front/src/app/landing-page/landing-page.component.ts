@@ -18,6 +18,7 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   private backgroundTexts:Array<any>  = mockTexts;
   private textosBackground:Array<any> ;
   
+  private addedsTexts: Array<any> = [];
 
   private bgTextInput:FormControl;
 
@@ -30,28 +31,9 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   }
 
   ngAfterViewInit(){
-    this.textService.getTexts().subscribe((texts) => {
-      this.textosBackground = texts
-
-      let textsWrapperElement = this.textsWrapperRef.nativeElement;
-      this.backgroundTexts = [];
-      for(let i=0;i<this.nShowedTexts;i++){
-        let randomIndex = this.getRandomInt(0,this.textosBackground.length-1);
-        let randomText = this.textosBackground[randomIndex];
-        let textObject = {
-          text: null,
-          x: null,
-          y: null,
-          vx: null,
-          vy: null
-        };
-        textObject.text = randomText.value;
-        textObject.x = this.getRandomInt(0,textsWrapperElement.clientWidth);
-        textObject.y = this.getRandomInt(0,textsWrapperElement.clientHeight);
-        textObject.vx = this.getRandomInt(-5,5);
-        textObject.vy = this.getRandomInt(-5,5);
-        this.backgroundTexts.push(textObject);
-      }
+    this.textService.getTexts().subscribe((data:any) => {
+      console.log(data);
+      this.prepairTextsBackground(data);
       setInterval( () => this.tick() , 16);
     })
     
@@ -106,7 +88,7 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
       }
       //Cuando supere limites cambiar texto
       if(superaLimite){
-        textoObject.text = this.getRandomText();
+        textoObject.text = this.getRandomTextByOdds().value;
       }
 
       if(textoObject.vx > velocidadMin){
@@ -151,33 +133,8 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
 
   addText(){
     if(this.bgTextInput.valid){
-      this.textService.addText(this.bgTextInput.value).subscribe((texts) => {
-        this.textosBackground = texts
-
-        let textsWrapperElement = this.textsWrapperRef.nativeElement;
-        this.backgroundTexts = [];
-        for(let i=0;i<this.nShowedTexts;i++){
-          let randomIndex = this.getRandomInt(0,this.textosBackground.length-1);
-          let randomText = this.textosBackground[randomIndex];
-          let textObject = {
-            text: null,
-            x: null,
-            y: null,
-            vx: null,
-            vy: null
-          };
-          if(i===0){
-            textObject.text = this.bgTextInput.value;
-          }else{
-            textObject.text = randomText.value;
-          }
-          textObject.x = this.getRandomInt(0,textsWrapperElement.clientWidth);
-          textObject.y = this.getRandomInt(0,textsWrapperElement.clientHeight);
-          textObject.vx = this.getRandomInt(-5,5);
-          textObject.vy = this.getRandomInt(-5,5);
-          this.backgroundTexts.push(textObject);
-        }
-
+      this.textService.addText(this.bgTextInput.value).subscribe((data) => {
+        this.prepairTextsBackground(data);
         this.bgTextInput.reset("");
       });
     }
@@ -186,6 +143,57 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   getRandomText(){
     let randomIndex = this.getRandomInt(0,this.textosBackground.length-1);
     let randomText = this.textosBackground[randomIndex];
-    return randomText.value;
+    return randomText;
+  }
+
+  getRandomTextByOdds(){
+    let randomIndex = this.getRandomInt(0,this.textosBackground.length-1);
+    let randomText = this.textosBackground[randomIndex];
+    let odds = Math.random();
+    if(odds > randomText.odds){
+      randomText = this.getRandomText();
+    }
+    return randomText;
+  }
+
+  prepairTextsBackground(data){
+      this.textosBackground = data.texts
+
+      let textsWrapperElement = this.textsWrapperRef.nativeElement;
+      this.backgroundTexts = [];
+      for(let i=0;i<this.nShowedTexts;i++){
+        let randomText = this.getRandomTextByOdds();
+        let textObject = {
+          text: null,
+          x: null,
+          y: null,
+          vx: null,
+          vy: null,
+          count: null,
+          odds: null
+        };
+        textObject.text = randomText.value;
+        textObject.count = randomText.count;
+        textObject.odds = randomText.count / data.totalCount;
+        textObject.x = this.getRandomInt(0,textsWrapperElement.clientWidth);
+        textObject.y = this.getRandomInt(0,textsWrapperElement.clientHeight);
+        textObject.vx = this.getRandomInt(-5,5);
+        textObject.vy = this.getRandomInt(-5,5);
+        this.backgroundTexts.push(textObject);
+      }
+  }
+
+  getTopFive(){
+    let ranking = 5;
+    let rankingTexts =[];
+    this.backgroundTexts.sort((elemento1,elemento2) => {
+      if(elemento1.odds > elemento2.odds) return 1;
+      if(elemento1.odds < elemento2.odds) return -1;
+      return 0;
+    });
+    for(let i=0;i<ranking;i++){
+      rankingTexts.push(this.backgroundTexts[i]);
+    }
+    return rankingTexts;
   }
 }
