@@ -17,6 +17,7 @@ import { TranslateService} from './translate/translation.service';
 
 import { routing } from './app.route';
 import { RankingComponent } from './ranking/ranking.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RankingComponent } from './ranking/ranking.component';
     LandingPageComponent,
     IdiomasComponent,
     TranslatePipe,
-    RankingComponent
+    RankingComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,

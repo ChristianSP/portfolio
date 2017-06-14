@@ -20,5 +20,7 @@ export const LANG_EN_TRANS = {
 
     "ranking.title": "TOP 5 - texts",
 
-    "ocurrencias": "occurrencies"
+    "ocurrencias": "occurrencies",
+    "projects": "Projects",
+    
 };

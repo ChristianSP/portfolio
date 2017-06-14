@@ -42,6 +42,15 @@ $color-hard: #FF1300;
     right: 0;
 }
 
+.bottom__middle{
+    position: absolute;
+    bottom: 10px;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    width: 27rem;
+}
+
 .blink-std{
     background-color: $color-std;
     border-color: $color-std;

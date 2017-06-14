@@ -3,3 +3,19 @@
         text-decoration: underline;
     }
 }
+
+.header__card{
+    .card-block{
+        padding: 0.5rem;
+        color:white;
+    }
+}
+
+.text__card{
+    .card-block{
+        padding: 0.7rem;
+        .card-title{
+            margin-bottom: 0.4rem;
+        }
+    }
+}

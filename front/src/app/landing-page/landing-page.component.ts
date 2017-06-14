@@ -2,6 +2,8 @@ import { Component, OnInit,ViewChild,ElementRef,AfterViewInit,HostListener } fro
 import { TextService } from '../_services/text.service';
 import { FormControl, Validators } from '@angular/forms';
 import { mockTexts } from './backgroundTexts';
+import { mockProjects } from './projects';
+
 
 
 @Component({
@@ -21,6 +23,8 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   private addedsTexts: Array<any> = [];
 
   private bgTextInput:FormControl;
+
+  private projects: Array<any> = mockProjects;
 
   constructor(private textService: TextService) {
     

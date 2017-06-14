@@ -1,13 +1,13 @@
 
 
-  <div class="card mb-3">
+  <div class="card card-success mb-3 header__card text-center">
     <div class="card-block">
       <blockquote class="card-blockquote">
-        <h4>{{ "ranking.title" | translate}}</h4>
+        <strong>{{ "ranking.title" | translate}}</strong>
       </blockquote>
     </div>
   </div>
-  <div *ngFor="let text of rankingTexts" class="card mb-3">
+  <div *ngFor="let text of rankingTexts" class="card text__card mb-3">
     <div class="card-block">
       <blockquote class="card-blockquote">
         <div class="row">
