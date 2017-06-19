@@ -20,7 +20,7 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   private backgroundTexts:Array<any>  = mockTexts;
   private textosBackground:Array<any> ;
   
-  private addedsTexts: Array<any> = [];
+  private lastTexts: Array<any> = [];
 
   private bgTextInput:FormControl;
 
@@ -29,6 +29,14 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   constructor(private textService: TextService) {
     
     this.bgTextInput = new FormControl("",Validators.compose([Validators.minLength(2),Validators.maxLength(20),Validators.required]));
+    this.textService.connectSocket().subscribe((data) => {
+      if(data){
+        this.lastTexts.push(data);
+        this.textService.getTexts().subscribe((data:any) => {
+          this.textosBackground = data.texts;
+        });
+      }
+    });
   }
 
   ngOnInit() {
@@ -36,11 +44,16 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
 
   ngAfterViewInit(){
     this.textService.getTexts().subscribe((data:any) => {
-      console.log(data);
       this.prepairTextsBackground(data);
       setInterval( () => this.tick() , 16);
     })
-    
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  onMouseMove(event: KeyboardEvent) {
+    if(event.keyCode === 13){
+      this.addText();
+    }
   }
 
   getRandomInt(min, max) {
@@ -138,7 +151,7 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   addText(){
     if(this.bgTextInput.valid){
       this.textService.addText(this.bgTextInput.value).subscribe((data) => {
-        this.prepairTextsBackground(data);
+        this.textService.socketAddText(this.bgTextInput.value);
         this.bgTextInput.reset("");
       });
     }

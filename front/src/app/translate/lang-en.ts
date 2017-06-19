@@ -23,4 +23,7 @@ export const LANG_EN_TRANS = {
     "ocurrencias": "occurrencies",
     "projects": "Projects",
     
+    "title.live.text": "What´s going on?",
+    "added.by": " added "
+    
 };

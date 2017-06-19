@@ -4,6 +4,8 @@
 var frontUrl = "http://localhost:4200";
 
 var Text = require('./app/models/texts');
+var Name = require('./app/models/names');
+
 
 // BASE SETUP
 // =============================================================================
@@ -18,7 +20,10 @@ var middleware = require('./middleware');
 var shortId = require('shortid');
 var config = require('./config');
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var utilidades = require('./utilidades');
+var sockets = require('./socket');
+
+var io = sockets.initSocket(http,Name);
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", frontUrl);
@@ -112,6 +117,20 @@ router.get('/texts', function(req, res) {
     res.json({texts: textsMap,totalCount: totalCount});
 	});
 });
+
+setInterval(botText,9500);
+setInterval(botText,15000);
+
+
+function botText(){
+  Text.find({}, function(err, texts) {
+      let randomIndex = utilidades.getRandomInt(0,texts.length-1);
+      texts[randomIndex].count++;
+      texts[randomIndex].save(() => {
+        utilidades.getRandomName((randomName) => sockets.sendBotText(io,texts[randomIndex].value,randomName),Name);
+      });
+	});
+}
 
 // more routes for our API will happen here
 

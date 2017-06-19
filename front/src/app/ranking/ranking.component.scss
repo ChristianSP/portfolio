@@ -19,3 +19,12 @@
         }
     }
 }
+
+.card{
+    border-radius: 0;
+}
+
+.card:last-child{
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}

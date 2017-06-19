@@ -23,4 +23,6 @@ export const LANG_ES_TRANS = {
 
     "projects": "Proyectos",
     
+    "title.live.text": "¿Qué esta pasando?",
+    "added.by": " añadió "
 };
