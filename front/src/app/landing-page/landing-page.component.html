@@ -8,67 +8,71 @@
   </span>
 </div>
 
-<div class="top__right mr-2">
+<div class="fix__left">
+    <div class="bottom__left">
+        <div class="form-group h-100 d-flex flex-column">
+            <div class="w-100 p-2 card-header bg-success">
+                <span> 
+                    {{ 'title.live.text' | translate }}
+                </span>
+            </div>
+            <div class="live-text__wrapper p-2">
+                <div class="live-text__item" *ngFor="let text of lastTexts">
+                    <span class="live-text__user" [ngClass] = "{'text-primary': text.who === 'user'
+                                        ,'text-success': text.who === 'self'
+                                        , 'text-danger': text.who === 'bot'}"> {{text.username}}</span>
+                    <span> {{ 'added.by' | translate}}</span>
+                    <span class="live-text"> {{text.text}} </span>                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom__right">
+        <form class="form-group h-100 d-flex justify-content-between flex-column">
+            <div class="w-100 p-1 card-header" 
+                [ngClass]= "{'bg-success': bgTextInput.valid || (bgTextInput.hasError('required') && !bgTextInput.touched)
+                            , 'bg-warning': bgTextInput.touched && bgTextInput.hasError('required')
+                            , 'bg-danger': !bgTextInput.hasError('required') && bgTextInput.hasError('minlength') || (!bgTextInput.hasError('required') && bgTextInput.hasError('maxlength'))}">
+                <label class="w-100 p-2" for="bgTextInput">
+                    <span *ngIf="bgTextInput.hasError('required') && !bgTextInput.touched"> 
+                        {{ 'add.text.bg' | translate }}
+                    </span>
+                    <span *ngIf="bgTextInput.touched && bgTextInput.hasError('required')">
+                        {{ 'add.text.bg.required' | translate }}
+                    </span>
+                    <span *ngIf="!bgTextInput.hasError('required') && bgTextInput.hasError('minlength')">
+                        {{ 'add.text.bg.minlength' | translate }}
+                    </span>
+                    <span *ngIf="bgTextInput.valid">
+                        {{ 'add.text.bg.valid' | translate }}
+                    </span>
+                    <span *ngIf="!bgTextInput.hasError('required') && bgTextInput.hasError('maxlength')">
+                        {{ 'add.text.bg.maxlength' | translate }}
+                    </span>
+                </label>
+            </div>
+            <div class="input-group p-2">
+                <input autocomplete="off" [formControl]="bgTextInput" type="text" class="form-control" id="bgTextInput"/>
+                <span class="input-group-btn">
+                    <button [ngClass]="{'blink-std': bgTextInput.valid}" [disabled]="!bgTextInput.valid" 
+                            (click)="addText()" class="btn pull-right">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="top__right">
     <app-ranking [texts]="textosBackground" [ranking]="5" [key]="'odds'"></app-ranking>
 </div>
 
 <img src="assets/logo.png" width="654" height="432"/>
 
-<div class="bottom__left">
-    <div class="form-group h-100 d-flex flex-column">
-        <div class="w-100 p-2 card-header bg-success">
-            <span> 
-                {{ 'title.live.text' | translate }}
-            </span>
-        </div>
-        <div class="live-text__wrapper p-2">
-            <div class="live-text__item" *ngFor="let text of lastTexts">
-                <span class="live-text__user" [ngClass] = "{'text-primary': text.who === 'user'
-                                    ,'text-success': text.who === 'self'
-                                    , 'text-danger': text.who === 'bot'}"> {{text.username}}</span>
-                <span> {{ 'added.by' | translate}}</span>
-                <span class="live-text"> {{text.text}} </span>                   
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="bottom__middle">
     <app-carousel [projects]="projects"></app-carousel>
 </div>
 
-<div class="bottom__right mr-2">
-    <form class="form-group h-100 d-flex justify-content-between flex-column">
-        <div class="w-100 p-1 card-header" 
-            [ngClass]= "{'bg-success': bgTextInput.valid || (bgTextInput.hasError('required') && !bgTextInput.touched)
-                        , 'bg-warning': bgTextInput.touched && bgTextInput.hasError('required')
-                        , 'bg-danger': !bgTextInput.hasError('required') && bgTextInput.hasError('minlength') || (!bgTextInput.hasError('required') && bgTextInput.hasError('maxlength'))}">
-            <label class="w-100 p-2" for="bgTextInput">
-                <span *ngIf="bgTextInput.hasError('required') && !bgTextInput.touched"> 
-                    {{ 'add.text.bg' | translate }}
-                </span>
-                <span *ngIf="bgTextInput.touched && bgTextInput.hasError('required')">
-                    {{ 'add.text.bg.required' | translate }}
-                </span>
-                <span *ngIf="!bgTextInput.hasError('required') && bgTextInput.hasError('minlength')">
-                    {{ 'add.text.bg.minlength' | translate }}
-                </span>
-                <span *ngIf="bgTextInput.valid">
-                    {{ 'add.text.bg.valid' | translate }}
-                </span>
-                <span *ngIf="!bgTextInput.hasError('required') && bgTextInput.hasError('maxlength')">
-                    {{ 'add.text.bg.maxlength' | translate }}
-                </span>
-            </label>
-        </div>
-        <div class="input-group p-2">
-            <input autocomplete="off" [formControl]="bgTextInput" type="text" class="form-control" id="bgTextInput"/>
-            <span class="input-group-btn">
-                <button [ngClass]="{'blink-std': bgTextInput.valid}" [disabled]="!bgTextInput.valid" 
-                        (click)="addText()" class="btn pull-right">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </span>
-        </div>
-    </form>
-</div>
+
