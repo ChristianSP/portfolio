@@ -1,6 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'colores.scss';
 
+@mixin respond-to($breakpoint) {
+	@if $breakpoint == "extra-small-portrait" {
+    	@media (max-width: 480px) {
+    		@content;
+	    }
+	}
+	
+	@if $breakpoint == "extra-small-landscape" {
+    	@media (min-width: 481px) and (max-width: 766px) {
+    		@content;
+	    }
+	}
+	
+	@if $breakpoint == "small" {
+    	@media (min-width: 767px) and (max-width: 991px) {
+    		@content;
+	    }
+	}
+	
+	@else if $breakpoint == "medium" {
+    	@media (min-width: 992px) and (max-width: 1199px) {
+    		@content;
+		}
+	}
+	
+	@else if $breakpoint == "large" {
+    	@media (min-width: 1200px) {
+    		@content;
+    	}
+  	}
+}
+
 body{
     overflow: hidden;
 }
@@ -30,4 +62,93 @@ button{
 
 .text-bot{
     color: $color-borde-logo;
+}
+
+
+/* RESPONSIVES STYLES */
+@include respond-to(extra-small-portrait) {
+    app-landing-page{
+        img{
+            left: 0 !important;
+            width: 295px !important;
+            height: 195px !important;
+        }
+        #github__link{
+            position: absolute !important;
+        }
+    }
+    app-idiomas{
+        position: absolute !important;
+    }
+    .dropdown-menu{
+        z-index: 4001 !important;
+    }
+}
+
+@include respond-to(extra-small-landscape) {
+    app-landing-page{
+        img{
+            left: 0 !important;
+            width: 295px !important;
+            height: 195px !important;
+        }
+        #github__link{
+            position: absolute !important;
+        }
+    }
+    app-idiomas{
+        position: absolute !important;
+    }
+    .dropdown-menu{
+        z-index: 4001 !important;
+    }
+}
+
+@include respond-to(small) {
+    app-landing-page{
+        .fix__left{
+            width: 18em !important;
+            
+        }
+        img{
+            left: 18em !important;
+            width: 295px !important;
+            height: 195px !important;
+        }
+        #github__link{
+            position: absolute !important;
+        }
+    }
+    app-idiomas{
+        position: absolute !important;
+    }
+    .dropdown-menu{
+        z-index: 4001 !important;
+    }
+}
+
+@include respond-to(medium) {
+    app-landing-page{
+        .fix__left{
+            width: 18em !important;
+            
+        }
+        img{
+            left: 18em !important;
+            width: 295px !important;
+            height: 195px !important;
+        }
+        #github__link{
+            position: absolute !important;
+        }
+    }
+    app-idiomas{
+        position: absolute !important;
+    }
+    .dropdown-menu{
+        z-index: 4001 !important;
+    }
+}
+
+@include respond-to(large) {
 }

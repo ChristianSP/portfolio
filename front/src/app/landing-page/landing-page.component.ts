@@ -28,7 +28,23 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
 
   private particleColors: Array<string>= ["#8e261c","#cd6a49","#5f5e61"];
 
+  private mediasFlag: any ={
+    mobileLandscape: null,
+    mobilePortrait: null,
+    ipadLandscape: null,
+    ipadPortrait: null,
+    desktop: null
+  }
+
   constructor(private textService: TextService) {
+
+    if (matchMedia) {
+      this.mediasFlag.mobilePortrait = window.matchMedia("(max-width: 480px)")
+      this.mediasFlag.mobileLandscape = window.matchMedia("(min-width: 481px) and (max-width: 766px)")
+      this.mediasFlag.ipadPortrait = window.matchMedia("(min-width: 767px) and (max-width: 991px)")
+      this.mediasFlag.ipadLandscape = window.matchMedia("(min-width: 992px) and (max-width: 1199px)")
+      this.mediasFlag.desktop = window.matchMedia("(min-width: 1200px)")
+    }
     
     this.bgTextInput = new FormControl("",Validators.compose([Validators.minLength(2),Validators.maxLength(20),Validators.required]));
     this.textService.connectSocket().subscribe((data) => {
@@ -81,7 +97,7 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
 
   tick(){
     let textsWrapperElement = this.textsWrapperRef.nativeElement;
-    let limiteExtra = 100;
+    let limiteExtra = this.mediasFlag.desktop.matches ? 100 : 10;
     let velocidadMin = 3;
     this.backgroundTexts.forEach( (textoObject,index) =>{
       textoObject.x += textoObject.vx;
@@ -232,5 +248,19 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   getRandomParticleColor(){
     let randomIndex = this.getRandomInt(0,this.particleColors.length-1);
     return this.particleColors[randomIndex];
+  }
+
+  canShowLeftside(){
+    if( this.mediasFlag.desktop.matches 
+      || this.mediasFlag.ipadLandscape.matches
+      || this.mediasFlag.ipadPortrait.matches ){
+        return true;
+    }else{
+        return false;
+    }
+  }
+  
+  howManyTextsShowed(){
+    return this.mediasFlag.ipadLandscape.matches ? 3 : 5;
   }
 }

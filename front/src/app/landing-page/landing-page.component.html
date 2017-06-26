@@ -13,9 +13,9 @@
     <a href="https://github.com/ChristianSP/portfolio"> <i class="fa fa-github" aria-hidden="true"></i></a>
 </div>
 
-<div class="fix__left">
+<div class="fix__left" *ngIf="canShowLeftside()">
 
-    <app-ranking class="mb-1" [texts]="textosBackground" [ranking]="5" [key]="'odds'"></app-ranking>    
+    <app-ranking class="mb-1" [texts]="textosBackground" [ranking]="howManyTextsShowed()" [key]="'odds'"></app-ranking>    
 
     <div class="bottom__left">
         <div class="form-group h-100 d-flex flex-column">
