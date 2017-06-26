@@ -193,13 +193,12 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
   }
 
   getRandomTextByOdds(){
-    let randomIndex = this.getRandomInt(0,this.textosBackground.length-1);
-    let randomText = this.textosBackground[randomIndex];
-    let odds = Math.random();
-    if(odds > randomText.odds){
-      randomText = this.getRandomText();
+    let randomOdd = Math.random();
+    for(let index = 0; index < this.textosBackground.length ; index++){
+      if( randomOdd <= this.textosBackground[index].acumulativeOdds){
+        return this.textosBackground[index];
+      }
     }
-    return randomText;
   }
 
   prepairTextsBackground(data){
@@ -259,7 +258,7 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
         return false;
     }
   }
-  
+
   howManyTextsShowed(){
     return this.mediasFlag.ipadLandscape.matches ? 3 : 5;
   }

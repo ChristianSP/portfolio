@@ -21,8 +21,11 @@ export class TextService {
         return this.http.get(this.urlService.texts())
             .map((response: Response) => {
                 let data = response.json();
+                let oddAcumulative = 0;
                 for(let text of data.texts){
                     text.odds = text.count / data.totalCount;
+                    oddAcumulative += text.odds
+                    text.acumulativeOdds = oddAcumulative;
                 }
                 return data;
             });
