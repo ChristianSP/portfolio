@@ -18,7 +18,7 @@ export const LANG_EN_TRANS = {
     "add.text.bg.minlength": "You can do it better, at least 2 characters",
     "add.text.bg.maxlength": "Too much for me, the maximum is 20 characters",
 
-    "ranking.title": "TOP 5 - texts",
+    "ranking.title": "Popular texts",
 
     "ocurrencias": "occurrencies",
     "projects": "Projects",

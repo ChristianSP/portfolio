@@ -26,6 +26,8 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
 
   private projects: Array<any> = mockProjects;
 
+  private particleColors: Array<string>= ["#8e261c","#cd6a49","#5f5e61"];
+
   constructor(private textService: TextService) {
     
     this.bgTextInput = new FormControl("",Validators.compose([Validators.minLength(2),Validators.maxLength(20),Validators.required]));
@@ -49,12 +51,12 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
     })
   }
 
-  @HostListener('document:keypress', ['$event'])
-  onMouseMove(event: KeyboardEvent) {
-    if(event.keyCode === 13){
-      this.addText();
-    }
-  }
+  // @HostListener('document:keypress', ['$event'])
+  // onMouseMove(event: KeyboardEvent) {
+  //   if(event.keyCode === 13){
+  //     this.addText();
+  //   }
+  // }
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -103,10 +105,6 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
         textoObject.y = -limiteExtra;
         superaLimite = true;
       }
-      //Cuando supere limites cambiar texto
-      if(superaLimite){
-        textoObject.text = this.getRandomTextByOdds().value;
-      }
 
       if(textoObject.vx > velocidadMin){
         textoObject.vx--;
@@ -120,6 +118,21 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
       if(textoObject.vy < -velocidadMin){
         textoObject.vy++;
       }
+
+      //Cuando supere limites cambiar texto,velocidad y color
+      if(superaLimite){
+        textoObject.text = this.getRandomTextByOdds().value;
+        textoObject.color = this.getRandomParticleColor();
+        textoObject.vx = this.getRandomInt(-5,5);
+        if(textoObject.vx === 0){
+          textoObject.vx++;
+        }
+        textoObject.vy = this.getRandomInt(-5,5);
+        if(textoObject.vy === 0){
+          textoObject.vy++;
+        }
+      }
+
     });
   }
 
@@ -187,7 +200,8 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
           vx: null,
           vy: null,
           count: null,
-          odds: null
+          odds: null,
+          color: null
         };
         textObject.text = randomText.value;
         textObject.count = randomText.count;
@@ -196,6 +210,7 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
         textObject.y = this.getRandomInt(0,textsWrapperElement.clientHeight);
         textObject.vx = this.getRandomInt(-5,5);
         textObject.vy = this.getRandomInt(-5,5);
+        textObject.color = this.getRandomParticleColor();
         this.backgroundTexts.push(textObject);
       }
   }
@@ -212,5 +227,10 @@ export class LandingPageComponent implements OnInit,AfterViewInit{
       rankingTexts.push(this.backgroundTexts[i]);
     }
     return rankingTexts;
+  }
+
+  getRandomParticleColor(){
+    let randomIndex = this.getRandomInt(0,this.particleColors.length-1);
+    return this.particleColors[randomIndex];
   }
 }

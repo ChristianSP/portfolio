@@ -1,26 +1,41 @@
-$color-std: #00FF2B;
-$color-med: #FF7A00;
-$color-hard: #FF1300;
+@import '../../colores.scss';
 
-@keyframes blink-bg {
-    from {background-color: $color-std;}
-    to {background-color: #5cb85c; color:white;}
+
+$leftside-size: 24em;
+
+@keyframes blink-color-w-y {
+    from {color: white;}
+    to {color: $color-amarillo-logo;}
 }
 
-.text-std{
-    color: $color-std;
+#github__link{
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 2.1em;
+
+    a{
+        color:white;
+        cursor:pointer;
+        &:hover{
+            color:$color-rojo2-logo;
+        }
+    }
+
+    
 }
+
 .text-med{
-    color: $color-med;
+    color: $color-rojo2-logo !important;
 }
 .text-hard{
-    color: $color-hard;
+    color: $color-amarillo-logo !important;
 }
 
 .texts__wrapper{
-    width: 100vw;
+    width: calc(100vw - $leftside-size);
     height: 100vh;
-    background-color: black;
+    background-image: linear-gradient(0deg, #00172a, #00335d 72%);
 
     span{
         position: absolute;
@@ -29,7 +44,7 @@ $color-hard: #FF1300;
 
 .fix__left{
     position: fixed;
-    width: 24em;
+    width: $leftside-size;
     left: 0;
     top: 0; 
     height: 100vh;
@@ -58,12 +73,19 @@ $color-hard: #FF1300;
         right: left;
         background: white;
         border-bottom-right-radius: 0.25rem;
-        
-        height: 83%;
+        border-top-right-radius: 0.25rem;
+
+
+        height: 30px;
+        flex-grow: 1;
 
         .card-header{
             color:white;
             box-shadow: 0px 9px 73px -9px rgba(0,0,0,0.42);
+
+            label{
+                margin: 0;
+            }
         }
         .live-text__wrapper{
             overflow: hidden;
@@ -159,10 +181,9 @@ $color-hard: #FF1300;
     width: 27rem;
 }
 
-.blink-std{
-    background-color: $color-std;
-    border-color: $color-std;
-    animation-name: blink-bg;
+.blink-color-white-yellow{
+    border-color: $color-azul-logo;
+    animation-name: blink-color-w-y;
     animation-duration: 1s;
     animation-iteration-count: infinite;
 }
@@ -174,6 +195,6 @@ img{
     
     display: block;
     position: absolute;
-    top: 0;left: 0;bottom: 0; right: 0;
+    top: 0;left: $leftside-size;bottom: 0; right: 0;
     margin: auto;
 }

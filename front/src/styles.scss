@@ -1,8 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'colores.scss';
+
 body{
     overflow: hidden;
 }
 
 button{
     cursor:pointer;
+}
+
+.bg-app{
+    background-color: $color-rojo-logo;
+}
+
+.bg-app2{
+    background-color: $color-rojo2-logo;
+}
+.bg-app-azul,.badge-app-azul{
+    background-color: $color-azul-logo;
+}
+
+.text-self{
+    color: $color-azul-logo;
+}
+
+.text-user{
+    color: $color-rojo2-logo;
+}
+
+.text-bot{
+    color: $color-borde-logo;
 }

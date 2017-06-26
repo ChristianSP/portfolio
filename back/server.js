@@ -25,6 +25,10 @@ var sockets = require('./socket');
 
 var io = sockets.initSocket(http,Name);
 
+var Twit = require('twit')
+
+var T = new Twit(config);
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", frontUrl);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, x-access-token");
@@ -119,7 +123,7 @@ router.get('/texts', function(req, res) {
 });
 
 setInterval(botText,9500);
-setInterval(botText,15000);
+setInterval(botTextTwitter,200000);
 
 
 function botText(){
@@ -130,6 +134,30 @@ function botText(){
         utilidades.getRandomName((randomName) => sockets.sendBotText(io,texts[randomIndex].value,randomName),Name);
       });
 	});
+}
+
+function botTextTwitter(){
+  T.get('trends/place', { id: 1 }, function(err, data, response) {
+    if(!err){
+      let trends = data[0].trends;
+      trends.forEach((trend) => {
+        let trendName = trend.name.substring(0,20);
+        Text.findOne({value: trendName},function(err,text){
+          if(text){
+            text.count++;
+            text.save(() => {
+              utilidades.getRandomName((randomName) => sockets.sendBotText(io,trendName,randomName),Name);
+            });
+          }else{
+            var newText = new Text({value: trendName});
+            newText.save(function(err,newText) {
+              utilidades.getRandomName((randomName) => sockets.sendBotText(io,trendName,randomName),Name);
+            });
+          }
+        })
+      });
+    }
+  });
 }
 
 // more routes for our API will happen here

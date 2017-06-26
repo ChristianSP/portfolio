@@ -17,12 +17,12 @@ export const LANG_ES_TRANS = {
     "add.text.bg.minlength": "Puedes hacerlo mejor, al menos 2 cáracteres",
     "add.text.bg.maxlength": "Demasiado para mi, el máximo son 20 cáracteres",
 
-    "ranking.title": "Textos - TOP 5",
+    "ranking.title": "Lo popular",
 
     "ocurrencias": "ocurrencias",
 
     "projects": "Proyectos",
     
-    "title.live.text": "¿Qué esta pasando?",
+    "title.live.text": "¿Qué está pasando?",
     "added.by": " añadió "
 };
