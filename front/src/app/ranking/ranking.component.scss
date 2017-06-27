@@ -1,3 +1,5 @@
+@import '../../colores.scss';
+
 .card-title{
     span{
         text-decoration: underline;
@@ -9,6 +11,13 @@
     color:white;
     label{
         margin: 0;
+
+        i{
+            cursor: pointer;
+            &:hover{
+                color: $color-rojo2-logo;
+            }
+        }
     }
 }
 

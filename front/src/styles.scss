@@ -52,6 +52,11 @@ button{
     background-color: $color-azul-logo;
 }
 
+.badge-app-amarillo{
+    background-color: $color-amarillo-logo;
+    color: black;
+}
+
 .text-self{
     color: $color-azul-logo;
 }
@@ -62,6 +67,11 @@ button{
 
 .text-bot{
     color: $color-borde-logo;
+}
+
+.modal{
+    background: rgba(0,0,0,0.55);
+    z-index: 10001;
 }
 
 

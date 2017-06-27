@@ -6,7 +6,8 @@ export const LANG_ES_TRANS = {
     "en": "Inglés",
 
     "app.title": "Control horario",
-  
+    "text.all.title": "Todos los textos",
+
     "bienvenido": "Bienvenido",
 
     "inicio": "Inicio",
@@ -24,5 +25,11 @@ export const LANG_ES_TRANS = {
     "projects": "Proyectos",
     
     "title.live.text": "¿Qué está pasando?",
-    "added.by": " añadió "
+    "added.by": " añadió ",
+
+    "close.label": "Cerrar",
+
+    "sort.by": "Ordenar por: ",
+    "sort.az": "Alfabeto",
+    "sort.count": "Ocurrencias"
 };

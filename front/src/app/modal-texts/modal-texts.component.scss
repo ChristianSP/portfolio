@@ -1,0 +1,30 @@
+@import '../../colores.scss';
+
+.modal-header,.close{
+    color:white;
+}
+
+.sort-block{
+    max-height: 4em;
+    .badge{
+        cursor: pointer;
+        &:hover{
+            border: 0.1em solid $color-rojo2-logo;
+        }
+    }
+}
+
+.modal-body{
+    overflow: auto;
+    max-height: 25em;
+
+    p{
+        text-decoration: underline;
+        margin: 0;
+    }
+}
+
+i{
+    padding: 0.4em;
+    font-size: 1.3em;
+}

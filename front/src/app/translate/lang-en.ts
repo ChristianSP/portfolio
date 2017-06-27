@@ -7,6 +7,7 @@ export const LANG_EN_TRANS = {
     "en": "English",
 
     "app.title": "Picónstack",
+    "text.all.title": "All texts",
 
     "bienvenido": "Welcome",
 
@@ -24,6 +25,12 @@ export const LANG_EN_TRANS = {
     "projects": "Projects",
     
     "title.live.text": "What´s going on?",
-    "added.by": " added "
+    "added.by": " added ",
+
+    "close.label": "Close",
+
+    "sort.by": "Sort by: ",
+    "sort.az": "Alphabetical",
+    "sort.count": "Occurrencies"
     
 };

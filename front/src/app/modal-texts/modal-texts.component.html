@@ -1,0 +1,31 @@
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-app">
+        <h5 class="modal-title">{{ 'text.all.title' | translate}}</h5>
+        <button type="button" class="close" (click)="close()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-header bg-app sort-block">
+        <span>{{ 'sort.by' | translate }}</span>
+        <span (click)="sortBy('alpha-asc')" [ngClass]="{'badge-app-azul': !isSortingBy('alpha-asc'),'badge-app-amarillo': isSortingBy('alpha-asc')}" 
+          class="badge badge-pill"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i></span>
+        <span (click)="sortBy('alpha-desc')" [ngClass]="{'badge-app-azul': !isSortingBy('alpha-desc'),'badge-app-amarillo': isSortingBy('alpha-desc')}"
+          class="badge badge-pill"><i class="fa fa-sort-alpha-desc" aria-hidden="true"></i></span>
+        <span (click)="sortBy('num-asc')" [ngClass]="{'badge-app-azul': !isSortingBy('num-asc'),'badge-app-amarillo': isSortingBy('num-asc')}"
+          class="badge badge-pill"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></span>
+        <span (click)="sortBy('num-desc')" [ngClass]="{'badge-app-azul': !isSortingBy('num-desc'),'badge-app-amarillo': isSortingBy('num-desc')}"
+          class="badge badge-pill"><i class="fa fa-sort-numeric-desc" aria-hidden="true"></i></span>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let text of texts" class="mb-2">
+          <p>{{text.value}}</p>
+          <small>{{ text.count + " " + ("ocurrencias" | translate) }}</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">{{'close.label' | translate}}</button>
+      </div>
+    </div>
+  </div>

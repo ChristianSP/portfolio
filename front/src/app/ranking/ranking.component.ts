@@ -1,4 +1,5 @@
 import { Component, OnInit,Input,OnChanges } from '@angular/core';
+import { GeneralService } from '../_services/general.service';
 
 @Component({
   selector: 'app-ranking',
@@ -16,7 +17,7 @@ export class RankingComponent implements OnInit,OnChanges {
 
   rankingTexts:Array<any> = [];
 
-  constructor() {
+  constructor(private generalService: GeneralService) {
   }
 
   ngOnInit() {
@@ -40,5 +41,9 @@ export class RankingComponent implements OnInit,OnChanges {
       return this.rankingTexts;
     }
     return []
+  }
+
+  showModal(){
+    this.generalService.notifyOther({msg: "showModal", texts: this.texts});
   }
 }
